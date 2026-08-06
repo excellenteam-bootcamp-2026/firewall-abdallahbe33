@@ -1,12 +1,13 @@
 const express = require("express");
-
+const firewallRoutes = require("./routes/firewallRoutes");
 const app = express();
 const PORT = 3000;
+const requestLogger = require("./middleware/requestLogger");
+
 
 app.use(express.json());
-
-const requestLogger = require("./middleware/requestLogger");
 app.use(requestLogger);
+app.use('/api/firewall', firewallRoutes);
 
 
 app.get("/", (req, res) => {
