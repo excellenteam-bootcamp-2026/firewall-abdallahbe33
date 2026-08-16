@@ -4,7 +4,7 @@ import express, {
   NextFunction
 } from "express";
 
-import { firewallRoutes } from "./src/main";
+import { firewallRoutes } from "./main";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
