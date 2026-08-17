@@ -4,10 +4,13 @@ import express, {
   NextFunction
 } from "express";
 
+import { config } from "./env";
 import { firewallRoutes } from "./main";
-
+import { overrideConsole } from "./Logger";
+overrideConsole();
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = config.port;
+  
 
 
 app.use(express.json());
