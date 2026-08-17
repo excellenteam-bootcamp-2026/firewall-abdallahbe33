@@ -20,7 +20,12 @@ const envSchema = z.object({
 
   DEV_DATABASE_URI: z.string().min(1),
 
-  PROD_DATABASE_URI: z.string().min(1)
+  PROD_DATABASE_URI: z.string().min(1),
+
+  DB_CONNECTION_INTERVAL: z.coerce
+  .number()
+  .int()
+  .positive()
 });
 
 const parsedEnv = envSchema.safeParse(process.env);
@@ -45,5 +50,7 @@ export const config = {
   databaseUri,
 
   isDevelopment: env === ENVIRONMENTS.DEV,
-  isProduction: env === ENVIRONMENTS.PRODUCTION
+  isProduction: env === ENVIRONMENTS.PRODUCTION,
+  dbConnectionInterval:
+  parsedEnv.data.DB_CONNECTION_INTERVAL
 };

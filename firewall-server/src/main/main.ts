@@ -1,4 +1,4 @@
-import { MemoryFirewallRepository } from "../adapters/outbound/persistence/memory/memoryFirewallRepository";
+import {DrizzleFirewallRepository} from "../adapters/outbound/persistence/postgres/drizzleFirewallRepository";
 
 import { createAddFirewallRules } from "../application/usecases/addFirewallRules";
 import { createDeleteFirewallRules } from "../application/usecases/deleteFirewallRules";
@@ -9,7 +9,7 @@ import { FirewallController } from "../adapters/inbound/http/firewallController"
 import {createFirewallRoutes} from "../adapters/inbound/http/firewallRoutes";
 
 
-const firewallRepository = new MemoryFirewallRepository();
+const firewallRepository = new DrizzleFirewallRepository();
 
 const addFirewallRulesUseCase =
   createAddFirewallRules(firewallRepository);
