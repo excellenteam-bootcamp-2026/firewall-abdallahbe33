@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.firewallRoutes = void 0;
+const drizzleFirewallRepository_1 = require("../adapters/outbound/persistence/postgres/drizzleFirewallRepository");
+const addFirewallRules_1 = require("../application/usecases/addFirewallRules");
+const deleteFirewallRules_1 = require("../application/usecases/deleteFirewallRules");
+const getFirewallRules_1 = require("../application/usecases/getFirewallRules");
+const updateFirewallRulesStatus_1 = require("../application/usecases/updateFirewallRulesStatus");
+const firewallController_1 = require("../adapters/inbound/http/firewallController");
+const firewallRoutes_1 = require("../adapters/inbound/http/firewallRoutes");
+const firewallRepository = new drizzleFirewallRepository_1.DrizzleFirewallRepository();
+const addFirewallRulesUseCase = (0, addFirewallRules_1.createAddFirewallRules)(firewallRepository);
+const deleteFirewallRulesUseCase = (0, deleteFirewallRules_1.createDeleteFirewallRules)(firewallRepository);
+const getFirewallRulesUseCase = (0, getFirewallRules_1.createGetFirewallRules)(firewallRepository);
+const updateFirewallRulesStatusUseCase = (0, updateFirewallRulesStatus_1.createUpdateFirewallRulesStatus)(firewallRepository);
+const firewallController = new firewallController_1.FirewallController(addFirewallRulesUseCase, getFirewallRulesUseCase, deleteFirewallRulesUseCase, updateFirewallRulesStatusUseCase);
+const firewallRoutes = (0, firewallRoutes_1.createFirewallRoutes)(firewallController);
+exports.firewallRoutes = firewallRoutes;
+exports.default = firewallController;
+//# sourceMappingURL=main.js.map

@@ -7,8 +7,10 @@ import express, {
 import { config } from "./env";
 import { firewallRoutes } from "./main";
 import { overrideConsole } from "./Logger";
-import { connectToDatabase } from "../adapters/outbound/persistence/postgres/db";
-
+import {
+  connectToDatabase,
+  runMigrations
+} from "../adapters/outbound/persistence/postgres/db";
 
 overrideConsole();
 const app = express();
@@ -65,7 +67,7 @@ app.use((
 
 async function startServer(): Promise<void> {
   await connectToDatabase();
-
+  await runMigrations();
   app.listen(config.port, () => {
     console.log(`Server is running on port ${config.port}`);
   });

@@ -2,6 +2,7 @@ import { Pool } from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { config } from "../../../../main/env";
 import * as schema from "./schema";
+import { migrate } from "drizzle-orm/node-postgres/migrator";
 
 const pool = new Pool({
   connectionString: config.databaseUri
@@ -34,4 +35,12 @@ export async function connectToDatabase(): Promise<void> {
       );
     }
   }
+}
+
+export async function runMigrations(): Promise<void> {
+  await migrate(db, {
+    migrationsFolder: "./drizzle"
+  });
+
+  console.log("Database migrations completed.");
 }

@@ -1,0 +1,1 @@
+{"version":3,"file":"getFirewallRules.js","sourceRoot":"","sources":["../../../src/application/usecases/getFirewallRules.ts"],"names":[],"mappings":";;AAGA,wDAQC;AARD,SAAgB,sBAAsB,CACpC,kBAAsC;IAGtC,OAAO,KAAK,UAAU,gBAAgB;QACpC,OAAO,MAAM,kBAAkB,CAAC,WAAW,EAAE,CAAC;IAChD,CAAC,CAAC;AAEJ,CAAC"}

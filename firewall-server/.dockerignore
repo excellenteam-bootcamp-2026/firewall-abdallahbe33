@@ -1,0 +1,12 @@
+node_modules
+dist
+.git
+.env
+logs
+.env
+env.dev
+.env.prod
+logs
+node_modules
+dist
+.git
